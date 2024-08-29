@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Rutas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Planificador de Rutas</h1>
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="origin">Origen:</label>
+                <input type="text" class="form-control" id="origin" name="origin" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destino:</label>
+                <input type="text" class="form-control" id="destination" name="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="transport_mode">Modo de Transporte:</label>
+                <select class="form-control" id="transport_mode" name="transport_mode">
+                    <option value="driving">Conducción</option>
+                    <option value="walking">Caminar</option>
+                    <option value="bicycle">Bicicleta</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular Ruta</button>
+        </form>
+        {% if error %}
+            <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
