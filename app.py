@@ -2,7 +2,7 @@ import osmnx as ox
 from osmnx import distance
 import networkx as nx
 import folium
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from geopy.geocoders import Nominatim
 
 #OSMX Config
@@ -75,4 +75,4 @@ def index():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+     app.run(host='0.0.0.0', port=5000)
