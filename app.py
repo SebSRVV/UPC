@@ -1,4 +1,5 @@
 import osmnx as ox
+from osmnx import distance
 import networkx as nx
 import folium
 from flask import Flask, render_template, request
@@ -31,12 +32,8 @@ def calculate_route(origin, destination, transport_mode):
     destination_coords = (destination_point.latitude, destination_point.longitude)
     
     #modo de transporte
-    if transport_mode == "driving":
-        graph = ox.graph_from_point(origin_coords, dist=10000, network_type="drive")
-    elif transport_mode == "walking":
-        graph = ox.graph_from_point(origin_coords, dist=10000, network_type="walk")
-    elif transport_mode == "bicycle":
-        graph = ox.graph_from_point(origin_coords, dist=10000, network_type="bike")
+    modo = {"driving" : "drive", "walking" : "walk", "bicycle" : "bike"}
+    graph = ox.graph_from_point(origin_coords, dist=10000, network_type=modo[transport_mode], simplify=False)
 
     #nodos mas cercanos
     orig_node = ox.distance.nearest_nodes(graph, origin_coords[1], origin_coords[0])
